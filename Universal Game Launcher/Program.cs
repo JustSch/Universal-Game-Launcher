@@ -13,15 +13,23 @@ namespace Universal_Game_Launcher
         static void Main(string[] args)
         {
             var STEAM_DIRECTORY = "d:\\SteamLibrary\\steamapps";
-            string[] fileArray = new string[6];
+            
             ArrayList SteamFiles = new ArrayList();
+            int GAMENUM = 0;
+            int LAUNCHNUM = 0;
             try
             {
                 string[] ACFFILES = System.IO.Directory.GetFiles(@STEAM_DIRECTORY, "*.acf");
-                PrintValues(ACFFILES);
-                fileArray = ACFREAD(ACFFILES);
-                SteamFiles.Add(fileArray[5]);
-                SteamFiles.Add(fileArray[1]);
+                //PrintValues(ACFFILES);
+                foreach (string s in ACFFILES)
+                {
+                    string[] fileArray = new string[6];
+                    fileArray = ACFREAD(ACFFILES,GAMENUM);
+                    SteamFiles.Add(fileArray[5]);
+                    SteamFiles.Add(fileArray[1]);
+                    GAMENUM++;
+                  
+                }
             }
 
             catch (Exception e)
@@ -29,15 +37,28 @@ namespace Universal_Game_Launcher
                 Console.WriteLine("The Process Failed: {0}", e.ToString());
             }
 
-            Console.WriteLine("Now Launching:--------------------------------------");
+            
             foreach (string i in SteamFiles)
             {
-                Console.WriteLine("{0}", i);
+                Console.WriteLine("{0}", i + " " + LAUNCHNUM);
+                LAUNCHNUM++;
             }
-            Console.Read();
-            Process.Start("steam://rungameid/"+ Convert.ToString(SteamFiles[1]));
-
             
+
+            Console.WriteLine("Please Choose The Number For The Game You Want To Play");
+            if (int.TryParse(Console.ReadLine(), out int PlayNum))
+            {
+                Console.WriteLine("Now Launching:--------------------------------------" + SteamFiles[PlayNum]);
+
+                Process.Start("steam://rungameid/"+ Convert.ToString(SteamFiles[PlayNum + 1 ]));
+            }
+            else
+            {
+                Console.WriteLine("Bad Input");
+            }
+            
+            Console.Read();
+
         }
 
 
@@ -53,7 +74,7 @@ namespace Universal_Game_Launcher
             
         }
 
-        public static string[] ACFREAD(String [] ACFFILES) 
+        public static string[] ACFREAD(String [] ACFFILES,int GAMENUM) 
         {
             int lineNum = 0;
             int oarrayNum = 0;
@@ -62,7 +83,7 @@ namespace Universal_Game_Launcher
             string[] parsedArray = new string[2];
             string lineString;
 
-            System.IO.StreamReader file = new System.IO.StreamReader(ACFFILES[15]);
+            System.IO.StreamReader file = new System.IO.StreamReader(ACFFILES[GAMENUM]);
 
             file.ReadLine();
             file.ReadLine();
@@ -95,18 +116,13 @@ namespace Universal_Game_Launcher
             foreach (var item in matches)
             {
                 string ParsedString = item.ToString().TrimStart('\"').TrimEnd('\"');
-                Console.WriteLine("Parsed String: " + ParsedString);
+                //Console.WriteLine("Parsed String: " + ParsedString);
                 parsedArray[ARPLACE] = ParsedString;
                 ARPLACE++;
-                
-                
+
             }
            return parsedArray;
         }
-
-        
-
-
 
     }
 

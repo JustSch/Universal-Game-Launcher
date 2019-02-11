@@ -20,7 +20,7 @@ namespace Universal_Game_Launcher
             try
             {
                 string[] ACFFILES = System.IO.Directory.GetFiles(@STEAM_DIRECTORY, "*.acf");
-                //PrintValues(ACFFILES);
+
                 foreach (string s in ACFFILES)
                 {
                     string[] fileArray = new string[6];
@@ -60,19 +60,6 @@ namespace Universal_Game_Launcher
             }
 
             Console.Read();
-
-        }
-
-
-        private static void PrintValues(System.Collections.IEnumerable myList)
-        {
-            int num = 0;
-            foreach (String obj in myList)
-            {
-                Console.WriteLine("   {0} ", obj + num);
-                num++;
-            }
-            Console.WriteLine();
 
         }
 

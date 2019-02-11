@@ -14,6 +14,7 @@ namespace Universal_Game_Launcher
         static void Main(string[] args)
         {
             SteamList.FindSteamList();
+            //GOGFiles.FindGOGList();
   
         }
     }

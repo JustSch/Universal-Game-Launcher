@@ -15,23 +15,48 @@ namespace Universal_Game_Launcher
 
             string GOGGALAXY_DIRECTORY = "d:\\Program Files (x86)\\GOG Galaxy\\Games";
 
-            ArrayList GOGLIST = new ArrayList();
+            var GOGList = new List<KeyValuePair<string, string>>();
+            int LAUNCHNUM = 0;
             try
             {
                 string[] GOGDIR = System.IO.Directory.GetDirectories(@GOGGALAXY_DIRECTORY);
-                Console.WriteLine("The Number of Game Directories: {0}.", GOGDIR.Length);
+                //Console.WriteLine("The Number of Game Directories: {0}.", GOGDIR.Length);
 
-                foreach (String dir in GOGDIR)
+                foreach (string dir in GOGDIR)
                 {
+                    
                     string[] fils = Directory.GetFiles(@dir, "*.lnk");
+                    
+
                     foreach (string s in fils)
                     {
-                        GOGLIST.Add(s);
+                        //Console.WriteLine(s);
+                        GOGList.Add(new KeyValuePair<string, string>(GOGName(s), s));
+
                     }
                     
                 }
 
-                PrintValues(GOGLIST);
+                foreach (KeyValuePair<string, string> gog in GOGList)
+                {
+                    Console.WriteLine(gog.Key + " "+ LAUNCHNUM);
+                    LAUNCHNUM++;
+                }
+
+                Console.WriteLine("Choose A Game To Play: ");
+                if (int.TryParse(Console.ReadLine(), out int PlayNum))
+                {
+                    Console.WriteLine("Now Launching:--------------------------------------" + GOGList[PlayNum].Key);
+
+                    System.Diagnostics.Process.Start((GOGList[PlayNum].Value));
+                }
+                else
+                {
+                 
+                    throw (new BadInputException("Please Make Sure to put a number 0 - " + GOGList.Count));
+                }
+
+                Console.Read();
             }
             catch (Exception e)
             {
@@ -51,6 +76,13 @@ namespace Universal_Game_Launcher
             }
             Console.WriteLine();
 
+        }
+        public static string GOGName(string FileString)
+        {
+            string FileName = FileString.Substring(FileString.LastIndexOf('\\')).Substring(8);
+            FileName = FileName.Substring(0, FileName.Length - 4);
+
+            return FileName;
         }
     }
 }

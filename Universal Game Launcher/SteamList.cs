@@ -55,6 +55,7 @@ namespace Universal_Game_Launcher
             {
                 //Console.WriteLine("Bad Input");
                 throw (new BadInputException("Please Make Sure to put a number 0 -" + SteamFiles.Count));
+                
 
             }
 
@@ -63,7 +64,7 @@ namespace Universal_Game_Launcher
         }
 
 
-        public static void PrintValues(System.Collections.IEnumerable myList)
+        private static void PrintValues(System.Collections.IEnumerable myList)
         {
             int num = 0;
             foreach (String obj in myList)
@@ -75,7 +76,7 @@ namespace Universal_Game_Launcher
 
         }
 
-        public static string[] ACFREAD(String[] ACFFILES, int GAMENUM)
+        private static string[] ACFREAD(String[] ACFFILES, int GAMENUM)
         {
             int lineNum = 0;
             int oarrayNum = 0;
@@ -110,7 +111,7 @@ namespace Universal_Game_Launcher
 
         }
 
-        public static string[] ACFPARSE(string ParseString)
+        private static string[] ACFPARSE(string ParseString)
         {
             var reg = new System.Text.RegularExpressions.Regex("\".*?\"");
             var matches = reg.Matches(ParseString);

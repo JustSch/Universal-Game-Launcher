@@ -54,7 +54,7 @@ namespace Universal_Game_Launcher
             else
             {
                 //Console.WriteLine("Bad Input");
-                throw (new BadInputException("Please Make Sure to put a number 0 -" + SteamFiles.Count));
+                throw (new BadInputException("Please Make Sure to put a number 0 - " + SteamFiles.Count));
                 
 
             }

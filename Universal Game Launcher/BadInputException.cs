@@ -12,7 +12,6 @@ namespace Universal_Game_Launcher
 
         public BadInputException(string message) : base(message)
         {
-            Console.Read();
         }
 
         public BadInputException(string message, Exception innerException) : base(message, innerException)

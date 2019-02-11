@@ -13,8 +13,8 @@ namespace Universal_Game_Launcher
         static void Main(string[] args)
         {
             var STEAM_DIRECTORY = "d:\\SteamLibrary\\steamapps";
-            
-            ArrayList SteamFiles = new ArrayList();
+
+            var SteamFiles = new List<KeyValuePair<string, string>>();
             int GAMENUM = 0;
             int LAUNCHNUM = 0;
             try
@@ -25,8 +25,7 @@ namespace Universal_Game_Launcher
                 {
                     string[] fileArray = new string[6];
                     fileArray = ACFREAD(ACFFILES,GAMENUM);
-                    SteamFiles.Add(fileArray[5]);
-                    SteamFiles.Add(fileArray[1]);
+                    SteamFiles.Add(new KeyValuePair<string, string>(fileArray[5], fileArray[1]));
                     GAMENUM++;
                   
                 }
@@ -38,9 +37,9 @@ namespace Universal_Game_Launcher
             }
 
             
-            foreach (string i in SteamFiles)
+            foreach (KeyValuePair<string, string> steam in SteamFiles)
             {
-                Console.WriteLine("{0}", i + " " + LAUNCHNUM);
+                Console.WriteLine($"{steam.Key}" + " " + LAUNCHNUM);
                 LAUNCHNUM++;
             }
             
@@ -48,9 +47,9 @@ namespace Universal_Game_Launcher
             Console.WriteLine("Please Choose The Number For The Game You Want To Play");
             if (int.TryParse(Console.ReadLine(), out int PlayNum))
             {
-                Console.WriteLine("Now Launching:--------------------------------------" + SteamFiles[PlayNum]);
+                Console.WriteLine("Now Launching:--------------------------------------" + SteamFiles[PlayNum].Key);
 
-                Process.Start("steam://rungameid/"+ Convert.ToString(SteamFiles[PlayNum + 1 ]));
+                Process.Start("steam://rungameid/"+ Convert.ToString(SteamFiles[PlayNum].Value));
             }
             else
             {

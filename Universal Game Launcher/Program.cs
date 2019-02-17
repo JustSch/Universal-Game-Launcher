@@ -13,8 +13,23 @@ namespace Universal_Game_Launcher
     {
         static void Main(string[] args)
         {
-            SteamList.FindSteamList();
-            //GOGFiles.FindGOGList();
+            string input = "_____";
+            Console.WriteLine("Do You Want To Play A Game From Steam or GOG?");
+            input = Console.ReadLine();
+            if (input.ToLower().Equals("steam"))
+            {
+                SteamList.FindSteamList();
+            }
+            if (input.ToLower().Equals("gog"))
+            {
+                GOGFiles.FindGOGList();
+            }
+            else
+            {
+                throw new BadInputException();
+            }
+            
+            
   
         }
     }

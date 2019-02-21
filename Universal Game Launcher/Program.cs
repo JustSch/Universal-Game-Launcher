@@ -18,15 +18,32 @@ namespace Universal_Game_Launcher
             input = Console.ReadLine();
             if (input.ToLower().Equals("steam"))
             {
-                SteamList.FindSteamList();
+                try
+                {
+                    SteamList.FindSteamList();
+                }
+                catch (BadInputException e)
+                {
+                    Console.WriteLine(e.GetType().Name+ ": "+ e.Message);
+                    Console.Read();
+                }
             }
             if (input.ToLower().Equals("gog"))
             {
-                GOGFiles.FindGOGList();
+                try
+                {
+                    GOGFiles.FindGOGList();
+                }
+
+                catch (BadInputException e)
+                {
+                    Console.WriteLine(e.GetType().Name+ ": " + e.Message);
+                    Console.Read();
+                }
             }
             else
             {
-                throw new BadInputException();
+                Console.WriteLine("Bad Input");
             }
             
             

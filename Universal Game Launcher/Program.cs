@@ -23,7 +23,7 @@ namespace Universal_Game_Launcher
             //input = Console.ReadLine();
             Console.WriteLine(input);
            
-            pff.Close();
+            //pff.Close();
             //DisplayForm df = new DisplayForm();
             //df.ShowDialog();
 
@@ -36,7 +36,7 @@ namespace Universal_Game_Launcher
                 }
                 catch (BadInputException e)
                 {
-                    Console.WriteLine(e.GetType().Name+ ": "+ e.Message);
+                    Console.WriteLine(e.GetType().Name+ ": "+ e.Message);//make these messageDialogs
                     Console.Read();
                 }
             }

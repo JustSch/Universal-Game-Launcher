@@ -36,7 +36,13 @@ namespace Universal_Game_Launcher
                 Console.WriteLine("The Process Failed: {0}", e.ToString());
             }
 
-
+            int PlayNumb = 0; // make no answer 0?
+            DisplayForm df = new DisplayForm();
+            df.addGames(SteamFiles);
+            df.ShowDialog();
+            PlayNumb = df.PlayNumber;
+            Console.WriteLine(PlayNumb);
+            
             foreach (KeyValuePair<string, string> steam in SteamFiles)
             {
                 Console.WriteLine($"{steam.Key}" + " " + LAUNCHNUM);
@@ -45,11 +51,11 @@ namespace Universal_Game_Launcher
 
 
             Console.WriteLine("Please Choose The Number For The Game You Want To Play");
-            if (int.TryParse(Console.ReadLine(), out int PlayNum))
+            if (PlayNumb < SteamFiles.Count)
             {
-                Console.WriteLine("Now Launching:--------------------------------------" + SteamFiles[PlayNum].Key);
+                Console.WriteLine("Now Launching:--------------------------------------" + SteamFiles[PlayNumb].Key);
 
-                Process.Start("steam://rungameid/" + Convert.ToString(SteamFiles[PlayNum].Value));
+                Process.Start("steam://rungameid/" + Convert.ToString(SteamFiles[PlayNumb].Value));
             }
             else
             {

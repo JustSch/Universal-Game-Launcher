@@ -61,11 +61,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BadInputException.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="DisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="DisplayForm.Designer.cs">
+      <DependentUpon>DisplayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlatformForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlatformForm.Designer.cs">
+      <DependentUpon>PlatformForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GOGFiles.cs" />
     <Compile Include="Program.cs" />
@@ -88,8 +94,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="DisplayForm.resx">
+      <DependentUpon>DisplayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlatformForm.resx">
+      <DependentUpon>PlatformForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

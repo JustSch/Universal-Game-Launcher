@@ -14,8 +14,16 @@ namespace Universal_Game_Launcher
         static void Main(string[] args)
         {
             string input = "_____";
-            Console.WriteLine("Do You Want To Play A Game From Steam or GOG?");
-            input = Console.ReadLine();
+            PlatformForm pff = new PlatformForm();
+            pff.ShowDialog();
+            input = pff.platformString;
+
+            //pff.Close();
+            //Console.WriteLine("Do You Want To Play A Game From Steam or GOG?");
+            //input = Console.ReadLine();
+            Console.WriteLine(input);
+           
+            pff.Close();
             if (input.ToLower().Equals("steam"))
             {
                 try

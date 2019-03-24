@@ -10,23 +10,11 @@ using System.Windows.Forms;
 
 namespace Universal_Game_Launcher
 {
-    public partial class Form1 : Form
+    public partial class DisplayForm : Form
     {
-        public Form1()
+        public DisplayForm()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-      
-
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

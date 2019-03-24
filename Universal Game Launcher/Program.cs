@@ -24,6 +24,10 @@ namespace Universal_Game_Launcher
             Console.WriteLine(input);
            
             pff.Close();
+            //DisplayForm df = new DisplayForm();
+            //df.ShowDialog();
+            
+
             if (input.ToLower().Equals("steam"))
             {
                 try

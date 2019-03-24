@@ -15,6 +15,20 @@ namespace Universal_Game_Launcher
         public DisplayForm()
         {
             InitializeComponent();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Button button = new Button();  //testing code to be removed
+                button.Tag = i;
+                button.Text = i.ToString();
+                flowLayoutPanel1.Controls.Add(button);
+            }
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            
+            
         }
     }
 }

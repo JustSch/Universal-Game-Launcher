@@ -26,7 +26,7 @@ namespace Universal_Game_Launcher
             pff.Close();
             //DisplayForm df = new DisplayForm();
             //df.ShowDialog();
-            
+
 
             if (input.ToLower().Equals("steam"))
             {

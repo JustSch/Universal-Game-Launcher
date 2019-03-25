@@ -13,9 +13,15 @@ namespace Universal_Game_Launcher
     {
         static void Main(string[] args)
         {
+
+
+
+
             string input = "_____";
             PlatformForm pff = new PlatformForm();
             pff.Text = "Game Platform Selection";
+
+            //System.Windows.Forms.Application.Run(pff);
             pff.ShowDialog();
             input = pff.platformString;
 
@@ -23,47 +29,52 @@ namespace Universal_Game_Launcher
             //Console.WriteLine("Do You Want To Play A Game From Steam or GOG?");
             //input = Console.ReadLine();
             Console.WriteLine(input);
-           
+
             //pff.Close();
             //DisplayForm df = new DisplayForm();
             //df.ShowDialog();
 
+            try
+            {
+                if (input.ToLower().Equals("steam"))
+                {
+                    try
+                    {
+                        SteamList.FindSteamList();
+                    }
+                    catch (BadInputException e)
+                    {
+                        //Console.WriteLine(e.GetType().Name+ ": "+ e.Message);//make these messageDialogs
+                        System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message, "Error:");
+                        Console.Read();
+                    }
+                }
+                if (input.ToLower().Equals("gog"))
+                {
+                    try
+                    {
+                        GOGFiles.FindGOGList();
+                    }
 
-            if (input.ToLower().Equals("steam"))
-            {
-                try
-                {
-                    SteamList.FindSteamList();
+                    catch (BadInputException e)
+                    {
+                        //Console.WriteLine(e.GetType().Name+ ": " + e.Message);
+                        System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message, "Error");
+                        Console.Read();
+                    }
                 }
-                catch (BadInputException e)
+                else
                 {
-                    //Console.WriteLine(e.GetType().Name+ ": "+ e.Message);//make these messageDialogs
-                    System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message,"Error:");
-                    Console.Read();
-                }
-            }
-            if (input.ToLower().Equals("gog"))
-            {
-                try
-                {
-                    GOGFiles.FindGOGList();
+                    //Console.WriteLine("Bad Input");
+                    System.Windows.Forms.MessageBox.Show("Bad Input: Your Input Was Bad And You Should Feel Bad", "Error:");
                 }
 
-                catch (BadInputException e)
-                {
-                    //Console.WriteLine(e.GetType().Name+ ": " + e.Message);
-                    System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message,"Error");
-                    Console.Read();
-                }
+
             }
-            else
+            catch (Exception e)
             {
-                //Console.WriteLine("Bad Input");
-                System.Windows.Forms.MessageBox.Show("Bad Input: Your Input Was Bad And You Should Feel Bad","Error:");
+                System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message, "Error");
             }
-            
-            
-  
         }
     }
 }

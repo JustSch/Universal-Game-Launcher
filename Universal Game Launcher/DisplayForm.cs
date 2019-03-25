@@ -30,16 +30,16 @@ namespace Universal_Game_Launcher
 
      
 
-        public void addGames(List<KeyValuePair<string, string>> SteamFiles)
+        public void addGames(List<KeyValuePair<string, string>> GameFiles)
         {
             int i = 0;
-            foreach (KeyValuePair<string, string> steam in SteamFiles)
+            foreach (KeyValuePair<string, string> game in GameFiles)
             {
                 
                 
                 Button button = new Button(); 
                 button.Tag = i;
-                button.Text = $"{steam.Key}";
+                button.Text = $"{game.Key}";
                 button.TextAlign = ContentAlignment.MiddleCenter;
                 button.AutoSize = true;                             //change depending on textsize?
                 flowLayoutPanel1.Controls.Add(button);

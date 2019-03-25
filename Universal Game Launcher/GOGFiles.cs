@@ -43,12 +43,19 @@ namespace Universal_Game_Launcher
                     LAUNCHNUM++;
                 }
 
-                Console.WriteLine("Choose A Game To Play: ");
-                if (int.TryParse(Console.ReadLine(), out int PlayNum))
-                {
-                    Console.WriteLine("Now Launching:--------------------------------------" + GOGList[PlayNum].Key);
+                int PlayNumb = 0; // make no answer 0?
+                DisplayForm df = new DisplayForm();
+                df.addGames(GOGList);
+                df.ShowDialog();
+                PlayNumb = df.PlayNumber;
+                Console.WriteLine(PlayNumb);
 
-                    System.Diagnostics.Process.Start((GOGList[PlayNum].Value));
+                Console.WriteLine("Choose A Game To Play: ");
+                if (PlayNumb < GOGList.Count)
+                {
+                    Console.WriteLine("Now Launching:--------------------------------------" + GOGList[PlayNumb].Key);
+
+                    System.Diagnostics.Process.Start((GOGList[PlayNumb].Value));
                 }
                 else
                 {
@@ -56,12 +63,17 @@ namespace Universal_Game_Launcher
                     throw (new BadInputException("Please Make Sure to put a number 0 - " + GOGList.Count));
                 }
 
+
+
                 Console.Read();
             }
             catch (Exception e)
             {
                 Console.WriteLine("The Process Failed: {0}", e.ToString());
             }
+
+
+
 
             Console.Read();
 

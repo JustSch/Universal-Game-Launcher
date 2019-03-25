@@ -45,6 +45,7 @@ namespace Universal_Game_Launcher
 
                 int PlayNumb = 0; // make no answer 0?
                 DisplayForm df = new DisplayForm();
+                df.Text = "GOG Games";
                 df.addGames(GOGList);
                 df.ShowDialog();
                 PlayNumb = df.PlayNumber;
@@ -69,7 +70,8 @@ namespace Universal_Game_Launcher
             }
             catch (Exception e)
             {
-                Console.WriteLine("The Process Failed: {0}", e.ToString());
+                //Console.WriteLine("The Process Failed: {0}", e.ToString());
+                System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message,"Error");
             }
 
 

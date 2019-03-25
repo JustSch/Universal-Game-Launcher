@@ -15,6 +15,7 @@ namespace Universal_Game_Launcher
         {
             string input = "_____";
             PlatformForm pff = new PlatformForm();
+            pff.Text = "Game Platform Selection";
             pff.ShowDialog();
             input = pff.platformString;
 
@@ -36,7 +37,8 @@ namespace Universal_Game_Launcher
                 }
                 catch (BadInputException e)
                 {
-                    Console.WriteLine(e.GetType().Name+ ": "+ e.Message);//make these messageDialogs
+                    //Console.WriteLine(e.GetType().Name+ ": "+ e.Message);//make these messageDialogs
+                    System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message,"Error:");
                     Console.Read();
                 }
             }
@@ -49,13 +51,15 @@ namespace Universal_Game_Launcher
 
                 catch (BadInputException e)
                 {
-                    Console.WriteLine(e.GetType().Name+ ": " + e.Message);
+                    //Console.WriteLine(e.GetType().Name+ ": " + e.Message);
+                    System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message,"Error");
                     Console.Read();
                 }
             }
             else
             {
-                Console.WriteLine("Bad Input");
+                //Console.WriteLine("Bad Input");
+                System.Windows.Forms.MessageBox.Show("Bad Input: Your Input Was Bad And You Should Feel Bad","Error:");
             }
             
             

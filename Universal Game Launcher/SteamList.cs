@@ -33,16 +33,18 @@ namespace Universal_Game_Launcher
 
             catch (Exception e)
             {
-                Console.WriteLine("The Process Failed: {0}", e.ToString());
+                //Console.WriteLine("The Process Failed: {0}", e.ToString());
+                System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message);
             }
 
             int PlayNumb = 0; // make no answer 0?
             DisplayForm df = new DisplayForm();
+            df.Text = "Steam Games";
             df.addGames(SteamFiles);
             df.ShowDialog();
             PlayNumb = df.PlayNumber;
             Console.WriteLine(PlayNumb);
-            
+
             foreach (KeyValuePair<string, string> steam in SteamFiles)
             {
                 Console.WriteLine($"{steam.Key}" + " " + LAUNCHNUM);
@@ -51,21 +53,30 @@ namespace Universal_Game_Launcher
 
 
             Console.WriteLine("Please Choose The Number For The Game You Want To Play");
-            if (PlayNumb < SteamFiles.Count)
+            try
             {
-                Console.WriteLine("Now Launching:--------------------------------------" + SteamFiles[PlayNumb].Key);
+                if (PlayNumb < SteamFiles.Count)
+                {
+                    Console.WriteLine("Now Launching:--------------------------------------" + SteamFiles[PlayNumb].Key);
 
-                Process.Start("steam://rungameid/" + Convert.ToString(SteamFiles[PlayNumb].Value));
+                    Process.Start("steam://rungameid/" + Convert.ToString(SteamFiles[PlayNumb].Value));
+                }
+                else
+                {
+                    //Console.WriteLine("Bad Input");
+                    throw (new BadInputException("Please Make Sure to put a number 0 - " + SteamFiles.Count));
+
+
+                }
+
+                Console.Read();
             }
-            else
+
+            catch (Exception e)
             {
-                //Console.WriteLine("Bad Input");
-                throw (new BadInputException("Please Make Sure to put a number 0 - " + SteamFiles.Count));
-                
+                System.Windows.Forms.MessageBox.Show(e.GetType().Name + ": " + e.Message,"Error:");
 
             }
-
-            Console.Read();
 
         }
 

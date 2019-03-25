@@ -19,16 +19,9 @@ namespace Universal_Game_Launcher
             
             InitializeComponent();
 
-            //for (int i = 0; i < 125; i++)
-            //{
-            //    Button button = new Button();  //testing code to be removed
-            //    button.Tag = i;
-            //    button.Text = i.ToString();
-            //    flowLayoutPanel1.Controls.Add(button);
-            //}
         }
 
-     
+        
 
         public void addGames(List<KeyValuePair<string, string>> GameFiles)
         {
@@ -41,13 +34,21 @@ namespace Universal_Game_Launcher
                 button.Tag = i;
                 button.Text = $"{game.Key}";
                 button.TextAlign = ContentAlignment.MiddleCenter;
+            
+                button.Image = Image.FromFile(@"../../testIconH.ico"); //Will Probably Need To Change
+                button.TextImageRelation = TextImageRelation.ImageAboveText;
                 button.AutoSize = true;                             //change depending on textsize?
+                Console.WriteLine(button.Size);
                 flowLayoutPanel1.Controls.Add(button);
                 i++;
                 button.Click += new EventHandler(Button_Click);
                 
+                
 
             }
+            
+
+            
         }
 
         private void Button_Click(object sender, EventArgs e)
